@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ubuntu Lab PC – SSH Access Guide</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #222; }
+    h1 { border-bottom: 2px solid #ddd; padding-bottom: 10px; }
+    h2 { margin-top: 32px; }
+    code { background: #f2f2f2; padding: 2px 5px; border-radius: 4px; }
+    pre { background: #f5f5f5; padding: 15px; border-radius: 6px; overflow-x: auto; }
+    .note { background: #f7f7f7; border-left: 4px solid #888; padding: 10px 15px; margin: 15px 0; }
+  </style>
+</head>
+<body>
+<h1>Ubuntu Lab PC – SSH Access Guide</h1>
+<p><strong>Please follow the steps below.</strong></p>
+
+<h2>1. Connect to the VUB Network</h2>
+<p>Install the <strong>Ivanti VPN application</strong> and log in using your VUB email address and password.</p>
+<p>If your computer is connected directly to the <strong>VUB network via a LAN cable</strong>, a VPN connection may not be required.</p>
+
+<h2>2. Open a Terminal</h2>
+<p><strong>Windows:</strong> Open PowerShell or Windows Terminal.<br>
+<strong>macOS/Linux:</strong> Open Terminal.</p>
+
+<h2>3. Connect to the Ubuntu Lab PC</h2>
+<p>Use the username and IP address provided by the administrator:</p>
+<pre><code>ssh username@IP_ADDRESS</code></pre>
+<p>Example:</p>
+<pre><code>ssh student1@134.xxx.xxx.xxx</code></pre>
+
+<h2>4. Confirm the Connection</h2>
+<p>When connecting for the first time, you may see:</p>
+<pre><code>Are you sure you want to continue connecting (yes/no/[fingerprint])?</code></pre>
+<p>If the IP address is the one provided by the administrator, type:</p>
+<pre><code>yes</code></pre>
+<p>and press Enter.</p>
+
+<h2>5. Enter Your Password</h2>
+<p>Enter the temporary password provided by the administrator.</p>
+<div class="note"><strong>Note:</strong> No characters will appear on the screen while typing your password. This is normal.</div>
+
+<h2>6. Change Your Temporary Password</h2>
+<p>After logging in for the first time, change your password:</p>
+<pre><code>passwd</code></pre>
+<p>Enter your temporary password, followed by your new password twice.</p>
+
+<h2>7. Access Your Folders</h2>
+<p>Your private workspace is your home directory:</p>
+<pre><code>cd ~</code></pre>
+<p>which corresponds to:</p>
+<pre><code>/home/username/</code></pre>
+<p>Shared laboratory data are available under:</p>
+<pre><code>/data/</code></pre>
+<p>For example:</p>
+<pre><code>/data/raw/          Raw experimental data
+/data/projects/     Project data
+/data/shared/       Shared files</code></pre>
+
+<h2>8. Transfer Files</h2>
+<p>To upload a file from your computer to the Lab PC:</p>
+<pre><code>scp myfile.py username@IP_ADDRESS:/home/username/</code></pre>
+<p>To download a file from the Lab PC:</p>
+<pre><code>scp username@IP_ADDRESS:/home/username/result.tif .</code></pre>
+<p>To transfer an entire directory, use <code>-r</code>:</p>
+<pre><code>scp -r username@IP_ADDRESS:/data/projects/FPM .</code></pre>
+
+<h2>9. Finish Your SSH Session</h2>
+<p>When you have finished your work:</p>
+<pre><code>exit</code></pre>
+<p>This safely closes the SSH connection.</p>
+</body>
+</html>
